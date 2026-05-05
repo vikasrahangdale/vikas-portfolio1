@@ -1,506 +1,870 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="dark">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Vikas Rahangdale — Full Stack Developer</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap"
+    rel="stylesheet" />
   <style>
     :root {
       --bg: #0c0c0e;
       --bg2: #131316;
       --border: #1f1f24;
       --text: #e8e8ec;
-      --muted: #666672;
-      --accent: #3BC1A8;
-      --accent2: #7a9cc8;
-      --tag-bg: #1a1a20;
+      --muted: #a1a1aa;
+      --accent: #7beedc;
+      --accent2: #a3cbe6;
+      --tag-bg: #d4dada;
       --tag-text: #9999aa;
     }
+
     [data-theme="light"] {
       --bg: #f7f6f2;
       --bg2: #efede8;
       --border: #dedad4;
       --text: #1a1a1e;
-      --muted: #888890;
-      --accent: #3BC1A8;
-      --accent2: #1a5fa0;
+      --muted: #52525b;
+      --accent: #0891b2;
+      --accent2: #2563eb;
       --tag-bg: #e8e6e0;
-      --tag-text: #5a5a68;
+      --tag-text: #4b5563;
     }
 
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
       font-family: 'DM Sans', sans-serif;
-      background: var(--bg); color: var(--text);
-      font-size: 20px; line-height: 1.7;
+      background: var(--bg);
+      color: var(--text);
+      font-size: 20px;
+      line-height: 1.7;
       transition: background 0.3s, color 0.3s;
     }
 
+    h1,
+    h2,
+    h3 {
+      color: var(--text);
+    }
+
+    h2,
+    h3 {
+      color: var(--accent2);
+    }
+
     nav {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 0 clamp(1.5rem, 5vw, 4rem); height: 60px;
-      background: var(--bg); border-bottom: 1px solid var(--border);
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 clamp(1.5rem, 5vw, 4rem);
+      height: 60px;
+      background: var(--bg);
+      border-bottom: 1px solid var(--border);
       transition: background 0.3s;
     }
+
     .nav-logo {
       font-family: 'JetBrains Mono', monospace;
-      font-size: 20px; font-weight: 600;
-      color: var(--accent); text-decoration: none; letter-spacing: 0.04em;
+      font-size: 20px;
+      font-weight: 600;
+      color: var(--accent);
+      text-decoration: none;
+      letter-spacing: 0.04em;
     }
-    .nav-links { display: flex; gap: 2rem; list-style: none; align-items: center; }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+      align-items: center;
+    }
+
     .nav-links a {
-      font-size: 17px; font-weight: 500; color: var(--muted); text-decoration: none;
-      letter-spacing: 0.03em; transition: color 0.2s;
+      font-size: 17px;
+      font-weight: 500;
+      color: var(--muted);
+      text-decoration: none;
+      letter-spacing: 0.03em;
+      transition: color 0.2s;
     }
-    .nav-links a:hover { color: var(--text); }
+
+    .nav-links a:hover {
+      color: var(--text);
+    }
+
     .theme-btn {
-      background: none; border: 1px solid var(--border);
-      width: 32px; height: 32px; border-radius: 8px; cursor: pointer;
-      font-size: 14px; color: var(--muted);
-      display: flex; align-items: center; justify-content: center;
+      background: none;
+      border: 1px solid var(--border);
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 14px;
+      color: var(--muted);
+      display: flex;
+      align-items: center;
+      justify-content: center;
       transition: border-color 0.2s, color 0.2s;
     }
-    .theme-btn:hover { border-color: var(--accent); color: var(--accent); }
 
-    .container { max-width: 1200px; margin: 0 auto; padding: 0 clamp(1.5rem, 5vw, 3rem); }
-    section { padding: 5rem 0; border-bottom: 1px solid var(--border); }
+    .theme-btn:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 clamp(1.5rem, 5vw, 3rem);
+    }
+
+    section {
+      padding: 5rem 0;
+      border-bottom: 1px solid var(--border);
+    }
 
     .section-label {
       font-family: 'JetBrains Mono', monospace;
-      font-size: 13px; font-weight: 500; letter-spacing: 0.12em;
-      text-transform: uppercase; color: var(--accent); margin-bottom: 2.5rem;
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 2.5rem;
     }
 
     /* HERO */
-    #hero { padding: 8rem 0 5rem; border-bottom: 1px solid var(--border); }
+    #hero {
+      padding: 8rem 0 5rem;
+      border-bottom: 1px solid var(--border);
+    }
+
     .hero-eyebrow {
       font-family: 'JetBrains Mono', monospace;
-      font-size: 14px; color: var(--muted); letter-spacing: 0.08em; margin-bottom: 1.5rem;
+      font-size: 14px;
+      color: var(--muted);
+      letter-spacing: 0.08em;
+      margin-bottom: 1.5rem;
     }
+
     .hero-name {
       font-family: 'DM Serif Display', serif;
       font-size: clamp(3rem, 9vw, 5.5rem);
-      line-height: 1.05; font-weight: 400;
-      margin-bottom: 1.75rem; letter-spacing: -0.02em;
+      line-height: 1.05;
+      font-weight: 400;
+      margin-bottom: 1.75rem;
+      letter-spacing: -0.02em;
     }
-    .hero-name em { font-style: italic; color: var(--accent); }
+
+    .hero-name em {
+      font-style: italic;
+      color: var(--accent);
+    }
+
     .hero-desc {
-      font-size: 22px; color: var(--muted); font-weight: 300;
-      max-width: 700px; line-height: 1.75; margin-bottom: 2.5rem;
+      font-size: 22px;
+      color: var(--muted);
+      font-weight: 300;
+      max-width: 700px;
+      line-height: 1.75;
+      margin-bottom: 2.5rem;
     }
-    .hero-links { display: flex; flex-wrap: wrap; gap: 0.75rem; }
+
+    .hero-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+    }
+
     .btn {
-      display: inline-flex; align-items: center; gap: 0.4rem;
-      padding: 0.65rem 1.3rem; font-size: 15px; font-weight: 500;
-      letter-spacing: 0.01em; border-radius: 8px;
-      text-decoration: none; transition: all 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.65rem 1.3rem;
+      font-size: 15px;
+      font-weight: 500;
+      letter-spacing: 0.01em;
+      border-radius: 8px;
+      text-decoration: none;
+      transition: all 0.2s;
     }
-    .btn-primary { background: var(--accent); color: var(--bg); border: 1px solid var(--accent); }
-    .btn-primary:hover { opacity: 0.85; }
-    .btn-outline { background: transparent; color: var(--text); border: 1px solid var(--border); }
-    .btn-outline:hover { border-color: var(--muted); }
+
+    .btn-primary {
+      background: var(--accent);
+      color: var(--bg);
+      border: 1px solid var(--accent);
+    }
+
+    .btn-primary:hover {
+      opacity: 0.85;
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--text);
+      border: 1px solid var(--border);
+    }
+
+    .btn-outline:hover {
+      border-color: var(--muted);
+    }
 
     /* EXPERIENCE */
-    .exp-title { font-family: 'DM Serif Display', serif; font-size: 1.5rem; font-weight: 400; margin-bottom: 0.3rem; }
-    .exp-company {
-      font-size: 15px; color: var(--accent); font-weight: 500;
-      font-family: 'JetBrains Mono', monospace; letter-spacing: 0.02em; margin-bottom: 0.3rem;
+    .exp-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.5rem;
+      font-weight: 400;
+      margin-bottom: 0.3rem;
     }
-    .exp-meta { font-size: 14px; color: var(--muted); font-family: 'JetBrains Mono', monospace; letter-spacing: 0.03em; }
-    .exp-list { margin-top: 1rem; padding-left: 1.1rem; display: flex; flex-direction: column; gap: 0.5rem; }
-    .exp-list li { font-size: 17px; color: var(--muted); line-height: 1.65; }
-    .exp-list li::marker { color: var(--accent); }
+
+    .exp-company {
+      font-size: 15px;
+      color: var(--accent);
+      font-weight: 500;
+      font-family: 'JetBrains Mono', monospace;
+      letter-spacing: 0.02em;
+      margin-bottom: 0.3rem;
+    }
+
+    .exp-meta {
+      font-size: 14px;
+      color: var(--muted);
+      font-family: 'JetBrains Mono', monospace;
+      letter-spacing: 0.03em;
+    }
+
+    .exp-list {
+      margin-top: 1rem;
+      padding-left: 1.1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .exp-list li {
+      font-size: 17px;
+      color: var(--muted);
+      line-height: 1.65;
+    }
+
+    .exp-list li::marker {
+      color: var(--accent);
+    }
 
     /* PROJECTS */
-    .project-card { padding: 2rem 0; border-bottom: 1px solid var(--border); }
-    .project-card:last-child { border-bottom: none; }
+    .project-card {
+      padding: 2rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .project-card:last-child {
+      border-bottom: none;
+    }
 
     .project-top {
-      display: flex; align-items: center; gap: 0.75rem;
-      flex-wrap: wrap; margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+      margin-bottom: 0.5rem;
     }
-    .project-name { font-family: 'DM Serif Display', serif; font-size: 1.5rem; font-weight: 400; }
+
+    .project-name {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.5rem;
+      font-weight: 400;
+    }
+
     .badge-featured {
-      font-family: 'JetBrains Mono', monospace; font-size: 10px;
-      color: var(--accent); border: 1px solid var(--accent);
-      padding: 0.15rem 0.6rem; border-radius: 20px; letter-spacing: 0.07em;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      color: var(--accent);
+      border: 1px solid var(--accent);
+      padding: 0.15rem 0.6rem;
+      border-radius: 20px;
+      letter-spacing: 0.07em;
     }
-    .project-desc { font-size: 17px; color: var(--muted); line-height: 1.7; margin-bottom: 1rem; max-width: 800px; }
 
-    .feature-list { list-style: none; display: flex; flex-direction: column; gap: 0.4rem; margin-bottom: 1.1rem; }
+    .project-desc {
+      font-size: 17px;
+      color: var(--muted);
+      line-height: 1.7;
+      margin-bottom: 1rem;
+      max-width: 800px;
+    }
+
+    .feature-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+      margin-bottom: 1.1rem;
+    }
+
     .feature-list li {
-      font-size: 16px; color: var(--muted); line-height: 1.65;
-      padding-left: 1.2rem; position: relative;
+      font-size: 16px;
+      color: var(--muted);
+      line-height: 1.65;
+      padding-left: 1.2rem;
+      position: relative;
     }
-    .feature-list li::before { content: '→'; position: absolute; left: 0; color: var(--accent); font-size: 13px; top: 3px; }
 
-    .tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+    .feature-list li::before {
+      content: '→';
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-size: 13px;
+      top: 3px;
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+    }
+
     .tag {
-      font-family: 'JetBrains Mono', monospace; font-size: 13px;
-      color: var(--tag-text); background: var(--tag-bg);
-      padding: 0.3rem 0.8rem; border-radius: 4px; letter-spacing: 0.02em;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 13px;
+      color: var(--tag-text);
+      background: var(--tag-bg);
+      padding: 0.3rem 0.8rem;
+      border-radius: 4px;
+      letter-spacing: 0.02em;
     }
+
     .project-link {
-      font-family: 'JetBrains Mono', monospace; font-size: 14px;
-      color: var(--accent2); text-decoration: none; letter-spacing: 0.02em;
-      transition: opacity 0.2s; margin-left: auto;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 14px;
+      color: var(--accent2);
+      text-decoration: none;
+      letter-spacing: 0.02em;
+      transition: opacity 0.2s;
+      margin-left: auto;
     }
-    .project-link:hover { opacity: 0.7; }
-    .project-footer { display: flex; align-items: flex-end; justify-content: space-between; gap: 1rem; flex-wrap: wrap; }
+
+    .project-link:hover {
+      opacity: 0.7;
+    }
+
+    .project-footer {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
 
     /* SKILLS */
-    .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(165px, 1fr)); gap: 2rem; }
-    .skill-group-title {
-      font-family: 'JetBrains Mono', monospace; font-size: 13px;
-      font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase;
-      color: var(--accent); margin-bottom: 1rem;
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(165px, 1fr));
+      gap: 2rem;
     }
-    .skill-list { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; }
-    .skill-list li { font-size: 17px; color: var(--muted); }
+
+    .skill-group-title {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1rem;
+    }
+
+    .skill-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .skill-list li {
+      font-size: 17px;
+      color: var(--muted);
+    }
 
     /* EDUCATION */
-    .edu-row { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 0.25rem; }
-    .edu-degree { font-family: 'DM Serif Display', serif; font-size: 1.4rem; font-weight: 400; }
-    .edu-school { font-size: 17px; color: var(--muted); font-style: italic; }
+    .edu-row {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-bottom: 0.25rem;
+    }
+
+    .edu-degree {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.4rem;
+      font-weight: 400;
+    }
+
+    .edu-school {
+      font-size: 17px;
+      color: var(--muted);
+      font-style: italic;
+    }
 
     /* ACHIEVEMENT */
     .achievement-card {
-      padding: 1.5rem; border: 1px solid var(--border);
-      border-radius: 12px; background: var(--bg2);
+      padding: 1.5rem;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      background: var(--bg2);
     }
-    .achievement-title { font-family: 'DM Serif Display', serif; font-size: 1.4rem; margin-bottom: 0.4rem; }
+
+    .achievement-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.4rem;
+      margin-bottom: 0.4rem;
+    }
+
     .achievement-date {
-      font-family: 'JetBrains Mono', monospace; font-size: 13px;
-      color: var(--accent); letter-spacing: 0.05em; margin-bottom: 0.75rem;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 13px;
+      color: var(--accent);
+      letter-spacing: 0.05em;
+      margin-bottom: 0.75rem;
     }
-    .achievement-list { list-style: none; display: flex; flex-direction: column; gap: 0.4rem; }
+
+    .achievement-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+
     .achievement-list li {
-      font-size: 17px; color: var(--muted); line-height: 1.6;
-      padding-left: 1rem; position: relative;
+      font-size: 17px;
+      color: var(--muted);
+      line-height: 1.6;
+      padding-left: 1rem;
+      position: relative;
     }
-    .achievement-list li::before { content: '→'; position: absolute; left: 0; color: var(--accent); font-size: 14px; }
+
+    .achievement-list li::before {
+      content: '→';
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-size: 14px;
+    }
 
     /* CONTACT */
     .contact-headline {
       font-family: 'DM Serif Display', serif;
       font-size: clamp(1.8rem, 5vw, 2.8rem);
-      font-weight: 400; margin-bottom: 2.5rem; line-height: 1.15;
+      font-weight: 400;
+      margin-bottom: 2.5rem;
+      line-height: 1.15;
     }
-    .contact-headline em { font-style: italic; color: var(--accent); }
-    .contact-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; }
-    .contact-item { display: flex; flex-direction: column; gap: 0.25rem; }
+
+    .contact-headline em {
+      font-style: italic;
+      color: var(--accent);
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+    }
+
+    .contact-item {
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+
     .contact-label {
-      font-family: 'JetBrains Mono', monospace; font-size: 13px;
-      color: var(--muted); text-transform: uppercase; letter-spacing: 0.1em;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 13px;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
     }
-    .contact-value { font-size: 19px; color: var(--text); text-decoration: none; transition: color 0.2s; word-break: break-all; }
-    .contact-value:hover { color: var(--accent); }
+
+    .contact-value {
+      font-size: 19px;
+      color: var(--text);
+      text-decoration: none;
+      transition: color 0.2s;
+      word-break: break-all;
+    }
+
+    .contact-value:hover {
+      color: var(--accent);
+    }
 
     footer {
       padding: 2rem 0;
-      display: flex; justify-content: space-between; align-items: center;
-      flex-wrap: wrap; gap: 0.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0.5rem;
     }
-    footer span { font-family: 'JetBrains Mono', monospace; font-size: 13px; color: var(--muted); letter-spacing: 0.05em; }
 
-    .fade-in { opacity: 0; transform: translateY(18px); transition: opacity 0.55s ease, transform 0.55s ease; }
-    .fade-in.visible { opacity: 1; transform: none; }
+    footer span {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 13px;
+      color: var(--muted);
+      letter-spacing: 0.05em;
+    }
 
-    @media (max-width: 600px) { .nav-links { display: none; } }
+    .fade-in {
+      opacity: 0;
+      transform: translateY(18px);
+      transition: opacity 0.55s ease, transform 0.55s ease;
+    }
+
+    .fade-in.visible {
+      opacity: 1;
+      transform: none;
+    }
+
+    @media (max-width: 600px) {
+      .nav-links {
+        display: none;
+      }
+    }
   </style>
 </head>
+
 <body>
 
-<nav>
-  <a class="nav-logo" href="#">VR</a>
-  <ul class="nav-links">
-    <li><a href="#work">Work</a></li>
-    <li><a href="#projects">Projects</a></li>
-    <li><a href="#skills">Skills</a></li>
-    <li><a href="#education">Education</a></li>
-    <li><a href="#contact">Contact</a></li>
-  </ul>
-  <button class="theme-btn" id="themeBtn">☾</button>
-</nav>
+  <nav>
+    <a class="nav-logo" href="#">VR</a>
+    <ul class="nav-links">
+      <li><a href="#work">Work</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#education">Education</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <button class="theme-btn" id="themeBtn">☾</button>
+  </nav>
 
-<!-- HERO -->
-<section id="hero">
-  <div class="container">
-    <p class="hero-eyebrow fade-in">Full Stack Developer · Bhopal, India</p>
-    <h1 class="hero-name fade-in">Vikas<br><em>Rahangdale</em></h1>
-    <p class="hero-desc fade-in">
-      Full Stack Developer with 1+ year of experience in MERN stack and Django. Experienced in building scalable applications, REST APIs, and backend services using JavaScript and Python.
-    </p>
-    <div class="hero-links fade-in">
-      <a class="btn btn-primary" href="mailto:vikasrahangdale89@gmail.com">Get in touch</a>
-      <a class="btn btn-outline" href="https://drive.google.com/file/d/1gwKP2Qtu7ugYAPN2v2mFFM--pqAE7uBV/view?usp=drive_link" target="_blank">Resume</a>
-      <a class="btn btn-outline" href="https://github.com/vikasrahangdale" target="_blank">GitHub</a>
-      <a class="btn btn-outline" href="https://www.linkedin.com/in/vikas-rahangdale-6643012b4" target="_blank">LinkedIn</a>
-    </div>
-  </div>
-</section>
-
-<!-- EXPERIENCE -->
-<section id="work">
-  <div class="container">
-    <p class="section-label fade-in">Experience</p>
-    <div class="fade-in">
-      <h2 class="exp-title">Frontend Developer Intern</h2>
-      <p class="exp-company">Deepeigen Pvt. Ltd.</p>
-      <p class="exp-meta">Nov 2025 — Nov 2026 &nbsp;·&nbsp; Bhopal, India</p>
-      <ul class="exp-list">
-        <li>Developed a scalable EdTech platform for course selling using React (TypeScript), Django, and PostgreSQL, ensuring smooth frontend-backend integration.</li>
-        <li>Implemented secure authentication with OTP-based user verification and role-based access control for enhanced application security.</li>
-        <li>Integrated payment gateway and built automated invoice generation and reminder systems to streamline transactions and user engagement.</li>
-        <li>Designed and optimized RESTful APIs and database queries, improving application performance and response time.</li>
-        <li>Built responsive and user-friendly interfaces using Tailwind CSS while collaborating in an Agile environment to deliver production-ready features.</li>
-      </ul>
-    </div>
-    <div class="fade-in" style="margin-top: 4rem;">
-      <h2 class="exp-title">Software Developer Intern</h2>
-      <p class="exp-company">AEG Consultancy Services Pvt. Ltd.</p>
-      <p class="exp-meta">Oct 2025 — Dec 2025 &nbsp;·&nbsp; Bhopal, India (On-site)</p>
-      <ul class="exp-list">
-        <li>Worked as a Full Stack Developer using React and MongoDB to build scalable and efficient web applications.</li>
-        <li>Developed a comprehensive Import-Export platform, focusing on seamless data management and user flow.</li>
-        <li>Engineered a real-time chat application integrated with Google Gemini AI API for intelligent conversational experiences.</li>
-        <li>Optimized application performance and integrated various RESTful APIs to ensure a smooth and responsive user experience.</li>
-      </ul>
-    </div>
-  </div>
-</section>
-
-<!-- PROJECTS -->
-<section id="projects">
-  <div class="container">
-    <p class="section-label fade-in">Projects</p>
-
-    <!-- Immersive Animated Web Experience -->
-    <div class="project-card fade-in">
-      <div class="project-top">
-        <h3 class="project-name">Immersive Animated Web Experience</h3>
-        <span class="badge-featured">NEW</span>
-      </div>
-      <p class="project-desc">
-        A high-performance frontend application developed during my internship, focused on pushing the boundaries of web animation and media optimization. I specialized in creating seamless, cinematic user experiences by optimizing heavy-load video content and implementing complex scroll-based interactions.
+  <!-- HERO -->
+  <section id="hero">
+    <div class="container">
+      <p class="hero-eyebrow fade-in">Full Stack Developer · Bhopal, India</p>
+      <h1 class="hero-name fade-in">Vikas<br><em>Rahangdale</em></h1>
+      <p class="hero-desc fade-in">
+        Full Stack Developer with 1+ year of experience in MERN stack and Django. Experienced in building scalable
+        applications, REST APIs, and backend services using JavaScript and Python.
       </p>
-      <ul class="feature-list">
-        <li>Engineered advanced scroll-triggered animations using GSAP and Locomotive Scroll for a premium feel</li>
-        <li>Implemented heavy-load video optimization techniques to ensure smooth playback and fast initial load times</li>
-        <li>Designed highly interactive UI components with Framer Motion and Swiper.js for dynamic content delivery</li>
-        <li>Focused on pixel-perfect responsiveness and cross-browser performance across all devices</li>
-      </ul>
-      <div class="project-footer">
+      <div class="hero-links fade-in">
+        <a class="btn btn-primary" href="mailto:vikasrahangdale89@gmail.com">Get in touch</a>
+        <a class="btn btn-outline"
+          href="https://drive.google.com/file/d/1gwKP2Qtu7ugYAPN2v2mFFM--pqAE7uBV/view?usp=drive_link"
+          target="_blank">Resume</a>
+        <a class="btn btn-outline" href="https://github.com/vikasrahangdale" target="_blank">GitHub</a>
+        <a class="btn btn-outline" href="https://www.linkedin.com/in/vikas-rahangdale-6643012b4"
+          target="_blank">LinkedIn</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section id="work">
+    <div class="container">
+      <p class="section-label fade-in">Experience</p>
+      <div class="fade-in">
+        <h2 class="exp-title">Frontend Developer Intern</h2>
+        <p class="exp-company">Deepeigen Pvt. Ltd.</p>
+        <p class="exp-meta">Nov 2025 — Nov 2026 &nbsp;·&nbsp; Bhopal, India</p>
+        <ul class="exp-list">
+          <li>Developed a scalable EdTech platform for course selling using React (TypeScript), Django, and PostgreSQL,
+            ensuring smooth frontend-backend integration.</li>
+          <li>Implemented secure authentication with OTP-based user verification and role-based access control for
+            enhanced application security.</li>
+          <li>Integrated payment gateway and built automated invoice generation and reminder systems to streamline
+            transactions and user engagement.</li>
+          <li>Designed and optimized RESTful APIs and database queries, improving application performance and response
+            time.</li>
+          <li>Built responsive and user-friendly interfaces using Tailwind CSS while collaborating in an Agile
+            environment to deliver production-ready features.</li>
+        </ul>
+      </div>
+      <div class="fade-in" style="margin-top: 4rem;">
+        <h2 class="exp-title">Software Developer Intern</h2>
+        <p class="exp-company">AEG Consultancy Services Pvt. Ltd.</p>
+        <p class="exp-meta">Oct 2025 — Dec 2025 &nbsp;·&nbsp; Bhopal, India (On-site)</p>
+        <ul class="exp-list">
+          <li>Worked as a Full Stack Developer using React and MongoDB to build scalable and efficient web applications.
+          </li>
+          <li>Developed a comprehensive Import-Export platform, focusing on seamless data management and user flow.</li>
+          <li>Engineered a real-time chat application integrated with Google Gemini AI API for intelligent
+            conversational experiences.</li>
+          <li>Optimized application performance and integrated various RESTful APIs to ensure a smooth and responsive
+            user experience.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects">
+    <div class="container">
+      <p class="section-label fade-in">Projects</p>
+
+      <!-- Immersive Animated Web Experience -->
+      <div class="project-card fade-in">
+        <div class="project-top">
+          <h3 class="project-name">Immersive Animated Web Experience</h3>
+          <span class="badge-featured">NEW</span>
+        </div>
+        <p class="project-desc">
+          A high-performance frontend application developed during my internship, focused on pushing the boundaries of
+          web animation and media optimization. I specialized in creating seamless, cinematic user experiences by
+          optimizing heavy-load video content and implementing complex scroll-based interactions.
+        </p>
+        <ul class="feature-list">
+          <li>Engineered advanced scroll-triggered animations using GSAP and Locomotive Scroll for a premium feel</li>
+          <li>Implemented heavy-load video optimization techniques to ensure smooth playback and fast initial load times
+          </li>
+          <li>Designed highly interactive UI components with Framer Motion and Swiper.js for dynamic content delivery
+          </li>
+          <li>Focused on pixel-perfect responsiveness and cross-browser performance across all devices</li>
+        </ul>
+        <div class="project-footer">
+          <div class="tags">
+            <span class="tag">React</span>
+            <span class="tag">TypeScript</span>
+            <span class="tag">GSAP</span>
+            <span class="tag">Locomotive Scroll</span>
+            <span class="tag">Framer Motion</span>
+            <span class="tag">Swiper.js</span>
+            <span class="tag">Tailwind CSS</span>
+            <span class="tag">Video Optimization</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Event Management System -->
+      <div class="project-card fade-in">
+        <div class="project-top">
+          <h3 class="project-name">Event Management System</h3>
+          <span class="badge-featured">FEATURED</span>
+        </div>
+        <p class="project-desc">
+          A production-grade event management platform built on the MERN stack with separate Admin and User panels.
+          Users can browse location-based events, purchase tickets, and instantly receive auto-generated tickets via
+          email. Admins get a full professional dashboard to manage all events, users, and financial records end-to-end.
+        </p>
+        <ul class="feature-list">
+          <li>Secure JWT-based login with role-based access control for Admin and User panels</li>
+          <li>Admin dashboard — create &amp; manage events, view all users, ticket sales, revenue records</li>
+          <li>Location-based event discovery — users can browse and filter events by city or proximity using Geolocation
+            API</li>
+          <li>Full ticket purchase flow with integrated Razorpay payment gateway</li>
+          <li>Auto-generated PDF ticket emailed to user via Nodemailer on payment completion</li>
+          <li>Users can view, download, and manage their purchased tickets from the personal dashboard</li>
+        </ul>
+        <div class="project-footer">
+          <div class="tags">
+            <span class="tag">MongoDB</span>
+            <span class="tag">Express.js</span>
+            <span class="tag">React.js</span>
+            <span class="tag">Node.js</span>
+            <span class="tag">JWT</span>
+            <span class="tag">Razorpay</span>
+            <span class="tag">Nodemailer</span>
+            <span class="tag">Geolocation API</span>
+            <span class="tag">Redux Toolkit</span>
+            <span class="tag">Tailwind CSS</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Product Intelligence Platform -->
+      <div class="project-card fade-in">
+        <div class="project-top">
+          <h3 class="project-name">Product Intelligence Platform</h3>
+        </div>
+        <p class="project-desc">
+          Full-stack product intelligence platform with secure authentication and email verification. Supports
+          image-based and keyword-based product search to analyze pricing, stock availability, and cross-platform
+          presence. Includes real-time trend analysis, a subscription-based credit system with usage tracking, and a
+          comprehensive admin dashboard.
+        </p>
+        <div class="tags">
+          <span class="tag">React.js</span>
+          <span class="tag">Node.js</span>
+          <span class="tag">MongoDB</span>
+          <span class="tag">Express.js</span>
+          <span class="tag">JWT</span>
+          <span class="tag">REST API</span>
+        </div>
+      </div>
+
+      <!-- EdTech Course Platform -->
+      <div class="project-card fade-in">
+        <div class="project-top">
+          <h3 class="project-name">EdTech Course Platform</h3>
+        </div>
+        <p class="project-desc">
+          Scalable course selling platform with role-based access for Students, TAs, and Admins. Features OTP-based
+          authentication, Razorpay payment integration, automated invoice generation and reminder systems, and fully
+          responsive interfaces built with Tailwind CSS in an Agile workflow.
+        </p>
         <div class="tags">
           <span class="tag">React</span>
           <span class="tag">TypeScript</span>
-          <span class="tag">GSAP</span>
-          <span class="tag">Locomotive Scroll</span>
-          <span class="tag">Framer Motion</span>
-          <span class="tag">Swiper.js</span>
-          <span class="tag">Tailwind CSS</span>
-          <span class="tag">Video Optimization</span>
-        </div>
-      </div>
-    </div>
-
-    <!-- Event Management System -->
-    <div class="project-card fade-in">
-      <div class="project-top">
-        <h3 class="project-name">Event Management System</h3>
-        <span class="badge-featured">FEATURED</span>
-      </div>
-      <p class="project-desc">
-        A production-grade event management platform built on the MERN stack with separate Admin and User panels. Users can browse location-based events, purchase tickets, and instantly receive auto-generated tickets via email. Admins get a full professional dashboard to manage all events, users, and financial records end-to-end.
-      </p>
-      <ul class="feature-list">
-        <li>Secure JWT-based login with role-based access control for Admin and User panels</li>
-        <li>Admin dashboard — create &amp; manage events, view all users, ticket sales, revenue records</li>
-        <li>Location-based event discovery — users can browse and filter events by city or proximity using Geolocation API</li>
-        <li>Full ticket purchase flow with integrated Razorpay payment gateway</li>
-        <li>Auto-generated PDF ticket emailed to user via Nodemailer on payment completion</li>
-        <li>Users can view, download, and manage their purchased tickets from the personal dashboard</li>
-      </ul>
-      <div class="project-footer">
-        <div class="tags">
-          <span class="tag">MongoDB</span>
-          <span class="tag">Express.js</span>
-          <span class="tag">React.js</span>
-          <span class="tag">Node.js</span>
-          <span class="tag">JWT</span>
+          <span class="tag">Django</span>
+          <span class="tag">PostgreSQL</span>
           <span class="tag">Razorpay</span>
-          <span class="tag">Nodemailer</span>
-          <span class="tag">Geolocation API</span>
-          <span class="tag">Redux Toolkit</span>
           <span class="tag">Tailwind CSS</span>
         </div>
       </div>
+
     </div>
+  </section>
 
-    <!-- Product Intelligence Platform -->
-    <div class="project-card fade-in">
-      <div class="project-top">
-        <h3 class="project-name">Product Intelligence Platform</h3>
-      </div>
-      <p class="project-desc">
-        Full-stack product intelligence platform with secure authentication and email verification. Supports image-based and keyword-based product search to analyze pricing, stock availability, and cross-platform presence. Includes real-time trend analysis, a subscription-based credit system with usage tracking, and a comprehensive admin dashboard.
-      </p>
-      <div class="tags">
-        <span class="tag">React.js</span>
-        <span class="tag">Node.js</span>
-        <span class="tag">MongoDB</span>
-        <span class="tag">Express.js</span>
-        <span class="tag">JWT</span>
-        <span class="tag">REST API</span>
+  <!-- SKILLS -->
+  <section id="skills">
+    <div class="container">
+      <p class="section-label fade-in">Skills</p>
+      <div class="skills-grid">
+        <div class="fade-in">
+          <p class="skill-group-title">Frontend</p>
+          <ul class="skill-list">
+            <li>React.js</li>
+            <li>TypeScript</li>
+            <li>Redux Toolkit</li>
+            <li>JavaScript (ES6+)</li>
+            <li>Tailwind CSS</li>
+            <li>HTML5 &amp; CSS3</li>
+          </ul>
+        </div>
+        <div class="fade-in">
+          <p class="skill-group-title">Backend</p>
+          <ul class="skill-list">
+            <li>Node.js</li>
+            <li>Express.js</li>
+            <li>Python</li>
+            <li>Django REST Framework</li>
+            <li>REST API</li>
+            <li>JWT Auth</li>
+          </ul>
+        </div>
+        <div class="fade-in">
+          <p class="skill-group-title">Database &amp; Tools</p>
+          <ul class="skill-list">
+            <li>MongoDB</li>
+            <li>PostgreSQL</li>
+            <li>Git &amp; GitHub</li>
+            <li>Postman</li>
+            <li>Razorpay</li>
+            <li>Vercel &amp; Render</li>
+          </ul>
+        </div>
       </div>
     </div>
+  </section>
 
-    <!-- EdTech Course Platform -->
-    <div class="project-card fade-in">
-      <div class="project-top">
-        <h3 class="project-name">EdTech Course Platform</h3>
-      </div>
-      <p class="project-desc">
-        Scalable course selling platform with role-based access for Students, TAs, and Admins. Features OTP-based authentication, Razorpay payment integration, automated invoice generation and reminder systems, and fully responsive interfaces built with Tailwind CSS in an Agile workflow.
-      </p>
-      <div class="tags">
-        <span class="tag">React</span>
-        <span class="tag">TypeScript</span>
-        <span class="tag">Django</span>
-        <span class="tag">PostgreSQL</span>
-        <span class="tag">Razorpay</span>
-        <span class="tag">Tailwind CSS</span>
+  <!-- EDUCATION -->
+  <section id="education">
+    <div class="container">
+      <p class="section-label fade-in">Education</p>
+      <div class="fade-in">
+        <div class="edu-row">
+          <h3 class="edu-degree">Bachelor of Technology — Information Technology</h3>
+          <span class="exp-meta">2022 — 2026</span>
+        </div>
+        <p class="edu-school">NRI Institute of Information Science and Technology, Bhopal</p>
       </div>
     </div>
+  </section>
 
-  </div>
-</section>
-
-<!-- SKILLS -->
-<section id="skills">
-  <div class="container">
-    <p class="section-label fade-in">Skills</p>
-    <div class="skills-grid">
-      <div class="fade-in">
-        <p class="skill-group-title">Frontend</p>
-        <ul class="skill-list">
-          <li>React.js</li>
-          <li>TypeScript</li>
-          <li>Redux Toolkit</li>
-          <li>JavaScript (ES6+)</li>
-          <li>Tailwind CSS</li>
-          <li>HTML5 &amp; CSS3</li>
-        </ul>
-      </div>
-      <div class="fade-in">
-        <p class="skill-group-title">Backend</p>
-        <ul class="skill-list">
-          <li>Node.js</li>
-          <li>Express.js</li>
-          <li>Python</li>
-          <li>Django REST Framework</li>
-          <li>REST API</li>
-          <li>JWT Auth</li>
-        </ul>
-      </div>
-      <div class="fade-in">
-        <p class="skill-group-title">Database &amp; Tools</p>
-        <ul class="skill-list">
-          <li>MongoDB</li>
-          <li>PostgreSQL</li>
-          <li>Git &amp; GitHub</li>
-          <li>Postman</li>
-          <li>Razorpay</li>
-          <li>Vercel &amp; Render</li>
+  <!-- ACHIEVEMENTS -->
+  <section id="achievement">
+    <div class="container">
+      <p class="section-label fade-in">Achievements</p>
+      <div class="achievement-card fade-in">
+        <h3 class="achievement-title">Smart India Hackathon 2024 — National Runner-Up</h3>
+        <p class="achievement-date">12 December 2024</p>
+        <ul class="achievement-list">
+          <li>Achieved National Runner-Up at SIH 2024 for an NLP-based solution among thousands of teams nationwide</li>
+          <li>Earned 5-Star rating on HackerRank for problem-solving skills</li>
         </ul>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- EDUCATION -->
-<section id="education">
-  <div class="container">
-    <p class="section-label fade-in">Education</p>
-    <div class="fade-in">
-      <div class="edu-row">
-        <h3 class="edu-degree">Bachelor of Technology — Information Technology</h3>
-        <span class="exp-meta">2022 — 2026</span>
-      </div>
-      <p class="edu-school">NRI Institute of Information Science and Technology, Bhopal</p>
-    </div>
-  </div>
-</section>
-
-<!-- ACHIEVEMENTS -->
-<section id="achievement">
-  <div class="container">
-    <p class="section-label fade-in">Achievements</p>
-    <div class="achievement-card fade-in">
-      <h3 class="achievement-title">Smart India Hackathon 2024 — National Runner-Up</h3>
-      <p class="achievement-date">12 December 2024</p>
-      <ul class="achievement-list">
-        <li>Achieved National Runner-Up at SIH 2024 for an NLP-based solution among thousands of teams nationwide</li>
-        <li>Earned 5-Star rating on HackerRank for problem-solving skills</li>
-      </ul>
-    </div>
-  </div>
-</section>
-
-<!-- CONTACT -->
-<section id="contact">
-  <div class="container">
-    <p class="section-label fade-in">Contact</p>
-    <h2 class="contact-headline fade-in">Open to new<br><em>opportunities.</em></h2>
-    <div class="contact-grid">
-      <div class="contact-item fade-in">
-        <span class="contact-label">Email</span>
-        <a class="contact-value" href="mailto:vikasrahangdale89@gmail.com">vikasrahangdale89@gmail.com</a>
-      </div>
-      <div class="contact-item fade-in">
-        <span class="contact-label">Phone</span>
-        <a class="contact-value" href="tel:+917489333724">+91 74893 33724</a>
-      </div>
-      <div class="contact-item fade-in">
-        <span class="contact-label">LinkedIn</span>
-        <a class="contact-value" href="https://www.linkedin.com/in/vikas-rahangdale-6643012b4" target="_blank">Vikas Rahangdale</a>
-      </div>
-      <div class="contact-item fade-in">
-        <span class="contact-label">GitHub</span>
-        <a class="contact-value" href="https://github.com/vikasrahangdale" target="_blank">vikasrahangdale</a>
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="container">
+      <p class="section-label fade-in">Contact</p>
+      <h2 class="contact-headline fade-in">Open to new<br><em>opportunities.</em></h2>
+      <div class="contact-grid">
+        <div class="contact-item fade-in">
+          <span class="contact-label">Email</span>
+          <a class="contact-value" href="mailto:vikasrahangdale89@gmail.com">vikasrahangdale89@gmail.com</a>
+        </div>
+        <div class="contact-item fade-in">
+          <span class="contact-label">Phone</span>
+          <a class="contact-value" href="tel:+917489333724">+91 74893 33724</a>
+        </div>
+        <div class="contact-item fade-in">
+          <span class="contact-label">LinkedIn</span>
+          <a class="contact-value" href="https://www.linkedin.com/in/vikas-rahangdale-6643012b4" target="_blank">Vikas
+            Rahangdale</a>
+        </div>
+        <div class="contact-item fade-in">
+          <span class="contact-label">GitHub</span>
+          <a class="contact-value" href="https://github.com/vikasrahangdale" target="_blank">vikasrahangdale</a>
+        </div>
       </div>
     </div>
+  </section>
+
+  <div class="container">
+    <footer>
+      <span>Vikas Rahangdale · 2026</span>
+      <span>Bhopal, India</span>
+    </footer>
   </div>
-</section>
 
-<div class="container">
-  <footer>
-    <span>Vikas Rahangdale · 2026</span>
-    <span>Bhopal, India</span>
-  </footer>
-</div>
+  <script>
+    const btn = document.getElementById('themeBtn');
+    const html = document.documentElement;
+    btn.addEventListener('click', () => {
+      const isDark = html.getAttribute('data-theme') === 'dark';
+      html.setAttribute('data-theme', isDark ? 'light' : 'dark');
+      btn.textContent = isDark ? '☀' : '☾';
+    });
 
-<script>
-  const btn = document.getElementById('themeBtn');
-  const html = document.documentElement;
-  btn.addEventListener('click', () => {
-    const isDark = html.getAttribute('data-theme') === 'dark';
-    html.setAttribute('data-theme', isDark ? 'light' : 'dark');
-    btn.textContent = isDark ? '☀' : '☾';
-  });
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.08 });
 
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-  }, { threshold: 0.08 });
-
-  document.querySelectorAll('.fade-in').forEach((el, i) => {
-    el.style.transitionDelay = `${(i % 4) * 60}ms`;
-    observer.observe(el);
-  });
-</script>
+    document.querySelectorAll('.fade-in').forEach((el, i) => {
+      el.style.transitionDelay = `${(i % 4) * 60}ms`;
+      observer.observe(el);
+    });
+  </script>
 </body>
+
 </html>
